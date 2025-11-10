@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation - Vitesse-Auto</title>
+    <meta name="description" content="Réservez votre véhicule de luxe en quelques clics. Processus de réservation simple et sécurisé. Service premium garanti.">
+    <link rel="stylesheet" href="../styles/modern.css">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+  <body>
+    <!-- Modern Navigation -->
+    <nav class="navbar-modern" id="navbar">
+      <div class="nav-container">
+        <div class="logo-container">
+          <img src="../images/logo.png" alt="Vitesse-Auto Logo" class="logo">
+          <a href="index.html" class="brand-name">Vitesse-Auto</a>
+        </div>
+        
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Accueil</a></li>
+          <li><a href="bmw.html" class="nav-link">BMW</a></li>
+          <li><a href="Audi.html" class="nav-link">Audi</a></li>
+          <li><a href="vw.html" class="nav-link">Volkswagen</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Booking Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Réservez votre véhicule premium</h1>
+        <p>Completez votre réservation en quelques étapes simples pour une expérience de conduite exceptionnelle</p>
+      </div>
+    </section>
+
+    <!-- Booking Form -->
+    <section class="container-modern">
+      <div class="contact-form">
+        <h2 class="text-light mb-4 text-center">
+          <i class="fas fa-calendar-check mr-2 text-primary"></i>
+          Formulaire de réservation
+        </h2>
+        
+        <form id="bookingForm">
+          <!-- Step 1: Vehicle Selection -->
+          <div id="step1" class="booking-step">
+            <h3 class="text-light mb-4">
+              <span class="step-number">1</span>
+              Sélection du véhicule
+            </h3>
+            
+            <div class="form-group">
+              <label class="form-label">Véhicule sélectionné *</label>
+              <select class="form-input" id="vehicleSelect" required>
+                <option value="">Choisissez un véhicule</option>
+                <option value="BMW-M4">BMW M4 F82 - €259/jour</option>
+                <option value="BMW-M8">BMW M8 - €349/jour</option>
+                <option value="bmwserie4">BMW Série 4 - €229/jour</option>
+                <option value="audi-r8">Audi R8 - €389/jour</option>
+                <option value="Audi">Audi A4 - €179/jour</option>
+                <option value="gti">Volkswagen Golf GTI - €189/jour</option>
+              </select>
+            </div>
+            
+            <div id="vehicleInfo" class="alert alert-info" style="display: none;">
+              <i class="fas fa-info-circle mr-2"></i>
+              <span id="vehicleDetails"></span>
+            </div>
+          </div>
+          
+          <!-- Step 2: Rental Dates -->
+          <div id="step2" class="booking-step">
+            <h3 class="text-light mb-4">
+              <span class="step-number">2</span>
+              Période de location
+            </h3>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">Date de début *</label>
+                  <input type="date" class="form-input" id="startDate" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">Date de fin *</label>
+                  <input type="date" class="form-input" id="endDate" required>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">Heure de retrait *</label>
+                  <select class="form-input" id="pickupTime" required>
+                    <option value="">Choisissez une heure</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">Lieu de retrait *</label>
+                  <select class="form-input" id="pickupLocation" required>
+                    <option value="">Choisissez un lieu</option>
+                    <option value="paris">Paris - Centre</option>
+                    <option value="airport">Aéroport Charles de Gaulle</option>
+                    <option value="orly">Aéroport d'Orly</option>
+                    <option value="nice">Nice</option>
+                    <option value="lyon">Lyon</option>
+                    <option value="marseille">Marseille</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            
+            <div id="rentalSummary" class="alert alert-success" style="display: none;">
+              <i class="fas fa-calculator mr-2"></i>
+              <span id="rentalDetails"></span>
+            </div>
+          </div>
+          
+          <!-- Step 3: Personal Information -->
+          <div id="step3" class="booking-step">
+            <h3 class="text-light mb-4">
+              <span class="step-number">3</span>
+              Vos informations
+            </h3>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">Prénom *</label>
+                  <input type="text" class="form-input" id="firstName" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">Nom *</label>
+                  <input type="text" class="form-input" id="lastName" required>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">Email *</label>
+                  <input type="email" class="form-input" id="email" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">Téléphone *</label>
+                  <input type="tel" class="form-input" id="phone" required>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Adresse *</label>
+              <input type="text" class="form-input" id="address" required>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="form-label">Code postal *</label>
+                  <input type="text" class="form-input" id="zipCode" required>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="form-label">Ville *</label>
+                  <input type="text" class="form-input" id="city" required>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="form-label">Pays *</label>
+                  <input type="text" class="form-input" id="country" value="France" required>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Step 4: Additional Services -->
+          <div id="step4" class="booking-step">
+            <h3 class="text-light mb-4">
+              <span class="step-number">4</span>
+              Services additionnels
+            </h3>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <input type="checkbox" id="insurance" name="insurance" value="full">
+                Assurance tous risques complète (+€50/jour)
+              </label>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <input type="checkbox" id="chauffeur" name="chauffeur" value="yes">
+                Service chauffeur (+€200/jour)
+              </label>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <input type="checkbox" id="delivery" name="delivery" value="yes">
+                Livraison et retrait à domicile (+€100)
+              </label>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <input type="checkbox" id="gps" name="gps" value="yes">
+                GPS international (+€15/jour)
+              </label>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <input type="checkbox" id="babySeat" name="babySeat" value="yes">
+                Siège bébé (+€20/location)
+              </label>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Demandes spéciales</label>
+              <textarea class="form-textarea" id="specialRequests" rows="3" 
+                        placeholder="Précisez toute demande particulière pour votre location..."></textarea>
+            </div>
+          </div>
+          
+          <!-- Step 5: Confirmation -->
+          <div id="step5" class="booking-step">
+            <h3 class="text-light mb-4">
+              <span class="step-number">5</span>
+              Récapitulatif et confirmation
+            </h3>
+            
+            <div id="bookingSummary" class="alert alert-info">
+              <h4 class="text-light mb-3">Récapitulatif de votre réservation</h4>
+              <div id="summaryContent">
+                <!-- Summary will be populated by JavaScript -->
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <input type="checkbox" id="terms" name="terms" required>
+                J'accepte les <a href="#" class="text-primary">conditions générales de location</a> *
+              </label>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <input type="checkbox" id="cancellation" name="cancellation">
+                J'ai lu et compris la politique d'annulation *
+              </label>
+            </div>
+          </div>
+          
+          <!-- Navigation Buttons -->
+          <div class="d-flex justify-content-between mt-4">
+            <button type="button" class="btn-modern btn-outline" id="prevBtn" onclick="changeStep(-1)" style="display: none;">
+              <i class="fas fa-arrow-left mr-2"></i>Précédent
+            </button>
+            <button type="button" class="btn-modern btn-primary" id="nextBtn" onclick="changeStep(1)">
+              Suivant<i class="fas fa-arrow-right ml-2"></i>
+            </button>
+            <button type="submit" class="btn-modern btn-success" id="submitBtn" style="display: none;">
+              <i class="fas fa-check mr-2"></i>Confirmer la réservation
+            </button>
+          </div>
+        </form>
+        
+        <div id="bookingMessage" class="mt-3" style="display: none;"></div>
+      </div>
+    </section>
+
+    <!-- Modern Footer -->
+    <footer class="footer-modern">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="../images/logo.png" alt="Vitesse-Auto" class="logo mb-3">
+        </div>
+        
+        <div class="footer-links">
+          <a href="index.html" class="footer-link">Accueil</a>
+          <a href="bmw.html" class="footer-link">BMW</a>
+          <a href="Audi.html" class="footer-link">Audi</a>
+          <a href="vw.html" class="footer-link">Volkswagen</a>
+          <a href="contact.html" class="footer-link">Contact</a>
+        </div>
+        
+        <div class="footer-copyright">
+          <p>&copy; 2025 Vitesse-Auto - Tous droits réservés</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        let currentStep = 1;
+        const totalSteps = 5;
+        let bookingData = {};
+        
+        // Vehicle data
+        const vehicles = {
+            'BMW-M4': { name: 'BMW M4 F82', price: 259, category: 'Luxe / Coupé sportif' },
+            'BMW-M8': { name: 'BMW M8', price: 349, category: 'Luxe / GT' },
+            'bmwserie4': { name: 'BMW Série 4', price: 229, category: 'Premium / Coupé' },
+            'audi-r8': { name: 'Audi R8', price: 389, category: 'Supercar / Sport' },
+            'Audi': { name: 'Audi A4', price: 179, category: 'Premium / Berline' },
+            'gti': { name: 'Volkswagen Golf GTI', price: 189, category: 'Compact / Sport' }
+        };
+        
+        // Set minimum date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('startDate').min = today;
+        document.getElementById('endDate').min = today;
+        
+        // Vehicle selection handler
+        document.getElementById('vehicleSelect').addEventListener('change', function() {
+            const selectedVehicle = this.value;
+            if (selectedVehicle && vehicles[selectedVehicle]) {
+                const vehicle = vehicles[selectedVehicle];
+                document.getElementById('vehicleDetails').innerHTML = 
+                    `${vehicle.name} - ${vehicle.category} - €${vehicle.price}/jour`;
+                document.getElementById('vehicleInfo').style.display = 'block';
+                bookingData.vehicle = selectedVehicle;
+            } else {
+                document.getElementById('vehicleInfo').style.display = 'none';
+            }
+        });
+        
+        // Date change handler
+        document.getElementById('startDate').addEventListener('change', function() {
+            document.getElementById('endDate').min = this.value;
+            calculateRentalSummary();
+        });
+        
+        document.getElementById('endDate').addEventListener('change', calculateRentalSummary);
+        
+        function calculateRentalSummary() {
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            const vehicle = document.getElementById('vehicleSelect').value;
+            
+            if (startDate && endDate && vehicle && vehicles[vehicle]) {
+                const start = new Date(startDate);
+                const end = new Date(endDate);
+                const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
+                const dailyPrice = vehicles[vehicle].price;
+                const totalPrice = days * dailyPrice;
+                
+                document.getElementById('rentalDetails').innerHTML = 
+                    `Durée: ${days} jour(s) - Prix total: €${totalPrice}`;
+                document.getElementById('rentalSummary').style.display = 'block';
+                
+                bookingData.startDate = startDate;
+                bookingData.endDate = endDate;
+                bookingData.days = days;
+                bookingData.dailyPrice = dailyPrice;
+                bookingData.totalPrice = totalPrice;
+            }
+        }
+        
+        function changeStep(direction) {
+            // Validate current step before moving forward
+            if (direction > 0 && !validateStep(currentStep)) {
+                return;
+            }
+            
+            // Hide current step
+            document.getElementById(`step${currentStep}`).style.display = 'none';
+            
+            // Update step
+            currentStep += direction;
+            
+            // Show new step
+            document.getElementById(`step${currentStep}`).style.display = 'block';
+            
+            // Update buttons
+            document.getElementById('prevBtn').style.display = currentStep > 1 ? 'inline-block' : 'none';
+            document.getElementById('nextBtn').style.display = currentStep < totalSteps ? 'inline-block' : 'none';
+            document.getElementById('submitBtn').style.display = currentStep === totalSteps ? 'inline-block' : 'none';
+            
+            // Update summary on last step
+            if (currentStep === totalSteps) {
+                updateBookingSummary();
+            }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function validateStep(step) {
+            switch(step) {
+                case 1:
+                    const vehicle = document.getElementById('vehicleSelect').value;
+                    if (!vehicle) {
+                        alert('Veuillez sélectionner un véhicule');
+                        return false;
+                    }
+                    break;
+                case 2:
+                    const startDate = document.getElementById('startDate').value;
+                    const endDate = document.getElementById('endDate').value;
+                    const pickupTime = document.getElementById('pickupTime').value;
+                    const pickupLocation = document.getElementById('pickupLocation').value;
+                    
+                    if (!startDate || !endDate || !pickupTime || !pickupLocation) {
+                        alert('Veuillez compléter toutes les informations de période');
+                        return false;
+                    }
+                    
+                    if (new Date(endDate) < new Date(startDate)) {
+                        alert('La date de fin doit être postérieure à la date de début');
+                        return false;
+                    }
+                    break;
+                case 3:
+                    const firstName = document.getElementById('firstName').value;
+                    const lastName = document.getElementById('lastName').value;
+                    const email = document.getElementById('email').value;
+                    const phone = document.getElementById('phone').value;
+                    const address = document.getElementById('address').value;
+                    const zipCode = document.getElementById('zipCode').value;
+                    const city = document.getElementById('city').value;
+                    
+                    if (!firstName || !lastName || !email || !phone || !address || !zipCode || !city) {
+                        alert('Veuillez compléter toutes vos informations personnelles');
+                        return false;
+                    }
+                    
+                    // Validate email
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        alert('Veuillez entrer une adresse email valide');
+                        return false;
+                    }
+                    break;
+            }
+            return true;
+        }
+        
+        function updateBookingSummary() {
+            const vehicle = document.getElementById('vehicleSelect').value;
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            const pickupTime = document.getElementById('pickupTime').value;
+            const pickupLocation = document.getElementById('pickupLocation').value;
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            
+            if (vehicle && startDate && endDate && vehicles[vehicle]) {
+                const start = new Date(startDate);
+                const end = new Date(endDate);
+                const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
+                const totalPrice = days * vehicles[vehicle].price;
+                
+                let summaryHTML = `
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Véhicule:</strong> ${vehicles[vehicle].name}</p>
+                            <p><strong>Début:</strong> ${startDate} à ${pickupTime}</p>
+                            <p><strong>Fin:</strong> ${endDate}</p>
+                            <p><strong>Lieu:</strong> ${pickupLocation}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Client:</strong> ${firstName} ${lastName}</p>
+                            <p><strong>Durée:</strong> ${days} jour(s)</p>
+                            <p><strong>Prix/jour:</strong> €${vehicles[vehicle].price}</p>
+                            <p><strong>Total:</strong> €${totalPrice}</p>
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('summaryContent').innerHTML = summaryHTML;
+            }
+        }
+        
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Validate terms
+            if (!document.getElementById('terms').checked) {
+                alert('Veuillez accepter les conditions générales');
+                return;
+            }
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Traitement...';
+            submitBtn.disabled = true;
+            
+            try {
+                // Simulate booking process
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                
+                // Show success message
+                const messageDiv = document.getElementById('bookingMessage');
+                messageDiv.className = 'alert alert-success mt-3';
+                messageDiv.innerHTML = `
+                    <i class="fas fa-check-circle mr-2"></i>
+                    <strong>Réservation confirmée !</strong><br>
+                    Votre réservation a été enregistrée avec succès. Vous recevrez un email de confirmation dans quelques minutes avec tous les détails de votre location.<br><br>
+                    <strong>Numéro de réservation:</strong> VA${Date.now()}<br>
+                    <strong>Montant total:</strong> €${bookingData.totalPrice || '0'}
+                `;
+                messageDiv.style.display = 'block';
+                
+                // Reset form after 5 seconds
+                setTimeout(() => {
+                    this.reset();
+                    currentStep = 1;
+                    document.querySelectorAll('.booking-step').forEach(step => step.style.display = 'none');
+                    document.getElementById('step1').style.display = 'block';
+                    document.getElementById('prevBtn').style.display = 'none';
+                    document.getElementById('nextBtn').style.display = 'inline-block';
+                    document.getElementById('submitBtn').style.display = 'none';
+                    messageDiv.style.display = 'none';
+                }, 10000);
+                
+            } catch (error) {
+                // Show error message
+                const messageDiv = document.getElementById('bookingMessage');
+                messageDiv.className = 'alert alert-danger mt-3';
+                messageDiv.innerHTML = `
+                    <i class="fas fa-exclamation-circle mr-2"></i>
+                    Une erreur est survenue lors de la réservation. Veuillez réessayer ou nous contacter directement.
+                `;
+                messageDiv.style.display = 'block';
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show only first step
+            document.querySelectorAll('.booking-step').forEach((step, index) => {
+                step.style.display = index === 0 ? 'block' : 'none';
+            });
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+            navMenu.style.position = 'absolute';
+            navMenu.style.top = '100%';
+            navMenu.style.left = '0';
+            navMenu.style.right = '0';
+            navMenu.style.background = 'rgba(15, 23, 42, 0.98)';
+            navMenu.style.flexDirection = 'column';
+            navMenu.style.padding = '1rem';
+        });
+    </script>
+  </body>
+</html>
